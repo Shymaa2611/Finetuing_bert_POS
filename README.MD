@@ -34,10 +34,7 @@ Key Model Components:
 
 Setup Instructions
 1. Clone the Repository
-
-bash
-
-git clone https://github.com/Shymaa2611/Finetuning_bert_POS.git
+git clone https://github.com/Shymaa2611/Finetuning_bert_POS.git <br/>
 cd Finetuning_bert_POS
 
 2. Install Dependencies
@@ -56,62 +53,10 @@ Requirements:
     pandas
 
 3. Prepare the Dataset
+   run dataset.py file
 
-Ensure your dataset folder (datat/) contains CSV files where each file represents a word list for a specific POS category. For example, one file could represent verbs, and another could represent nouns.
-4. Training
-
-To start training the model, run the following command:
-
-bash
-
-python training.py --data_path ./dataset --epochs 3 --batch_size 32 --learning_rate 2e-5
-
-Arguments:
-
-    --data_path: Path to the dataset folder containing CSV files.
-    --epochs: Number of epochs for training.
-    --batch_size: Batch size for training.
-    --learning_rate: Learning rate for the optimizer.
-
-5. Evaluation
-
-After training, evaluate the model on a test set using:
-
-bash
-
-python evaluate.py --data_path ./dataset --batch_size 32
-
-6. Inference
-
-To perform inference and predict POS tags for new sentences, use the following script:
-
-bash
-
-python inference.py --sentence "I am running fast"
-
-This will output the predicted POS tags for each word in the sentence.
-Code Overview
-Model Definition (model.py)
-
-Defines the BertPOS class, which loads a pre-trained BERT model and adds a linear classifier on top.
-Data Loading (utils.py)
-
-    load_csv_files(): Reads CSV files from the dataset folder and loads them into a pandas DataFrame.
-    CSVDataset class: Converts the DataFrame into a PyTorch Dataset, tokenizes the text, and prepares input tensors for the BERT model.
-
-Training (training.py)
-
-Handles the training loop, optimizer setup, and model saving. Tracks the training loss and accuracy.
-Evaluation (evaluate.py)
-
-Loads the trained model and evaluates it on a test set, printing the test accuracy and loss.
-Hyperparameter Tuning
-
-You can experiment with the following hyperparameters for better results:
-
-    Learning rate: Adjust between 1e-5 and 5e-5.
-    Batch size: Depending on the available GPU memory.
-    Max sequence length: Set a limit to the number of tokens processed by BERT.
+4. Training 
+  run main.py file
 
 ## Acknowledgements
 
