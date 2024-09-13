@@ -11,8 +11,8 @@ def load_csv_files(folder_path):
         if file_name.endswith('.csv'):
             file_path = os.path.join(folder_path, file_name)
             try:
-                df = pd.read_csv(file_path, header=None, names=['word'], on_bad_lines='skip')  # Skip bad lines
-                df['label'] = file_name.replace('.csv', '')  # Use the filename as the label
+                df = pd.read_csv(file_path, header=None, names=['word'], on_bad_lines='skip')  
+                df['label'] = file_name.replace('.csv', '') 
                 all_data.append(df)
             except pd.errors.ParserError as e:
                 print(f"Error reading {file_name}: {e}")
@@ -40,8 +40,7 @@ class CSVDataset(Dataset):
     def __getitem__(self, idx):
         text = str(self.dataframe.iloc[idx]['word'])
         label_str = self.dataframe.iloc[idx]['label']
-        label = self.label_mapping.get(label_str, -1)  # Convert label to integer
-
+        label = self.label_mapping.get(label_str, -1)  
         encoding = self.tokenizer(
             text,
             add_special_tokens=True,
