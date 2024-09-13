@@ -3,6 +3,15 @@ from transformers import BertTokenizer, BertModel
 import torch.nn as nn
 from main import get_model
 
+idx_to_class = {
+    0: "Noun",
+    1: "Verb",
+    2: "Adjective",
+    3: "Adverb",
+    4: "Pronoun",
+    5: "Conjunction"
+}
+
 def load_model(model_path, device):
     model = get_model()  
     model.load_state_dict(torch.load(model_path, map_location=device))  
@@ -32,17 +41,19 @@ def infer(model, tokenizer, text, device):
             logits = outputs.logits  
         else:
             logits = outputs[0]  
-        print(f"Logits shape: {logits.shape}")  
         
         predictions = torch.argmax(logits, dim=-1)  
-    return predictions.item()
+
+    predicted_class_name = idx_to_class.get(predictions.item(), "Unknown")
+    
+    return predicted_class_name
 
 if __name__ == "__main__":
-    model_path = '/kaggle/working/test/Finetuning_bert_POS/checkpoint.pt'
+    model_path = 'checkpoint.pt'
     device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
     tokenizer = BertTokenizer.from_pretrained('bert-base-uncased')
     model = load_model(model_path, device)
     
     text = "Good"
-    prediction = infer(model, tokenizer, text, device)
-    print(f'Predicted class: {prediction}')
+    predicted_class = infer(model, tokenizer, text, device)
+    print(f'Predicted class: {predicted_class}')
