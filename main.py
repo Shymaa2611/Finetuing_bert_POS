@@ -11,7 +11,7 @@ def get_model():
    return model
    
 def run(model, train_set, test_set, train_loader, test_loader, optimizer, criterion, device):
-    num_epochs = 10
+    num_epochs = 3
     model.to(device)
     
     for epoch in range(num_epochs):
