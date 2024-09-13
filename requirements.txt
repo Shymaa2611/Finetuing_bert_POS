@@ -2,4 +2,3 @@ pandas
 torch
 transformers
 scikit-learn
-bitsandbytes
