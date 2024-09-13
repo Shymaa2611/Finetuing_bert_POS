@@ -69,5 +69,5 @@ def get_data(folder_path, tokenizer, batch_size=32):
     train_data, test_data = shuffle_and_split_data(df)
     label_mapping = create_label_mapping(train_data)
     train_loader, test_loader = create_data_loaders(train_data, test_data, tokenizer, batch_size, label_mapping)
-    return train_data, test_data, train_loader, test_loader, label_mapping
+    return train_data, test_data, train_loader, test_loader
 
