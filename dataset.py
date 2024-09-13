@@ -24,7 +24,7 @@ def shuffle_and_split_data(df, test_size=0.30, random_state=42):
 
 
 class CSVDataset(Dataset):
-    def __init__(self, dataframe, tokenizer, max_len):
+    def __init__(self, dataframe, tokenizer, max_len=150):
         self.dataframe = dataframe
         self.tokenizer = tokenizer
         self.max_len = max_len
@@ -33,11 +33,8 @@ class CSVDataset(Dataset):
         return len(self.dataframe)
 
     def __getitem__(self, idx):
-        # Ensure the 'word' column is a string
         text = str(self.dataframe.iloc[idx]['word'])
         label = self.dataframe.iloc[idx]['label']
-        
-        # Tokenize the text
         encoding = self.tokenizer(
             text,
             add_special_tokens=True,
@@ -47,8 +44,8 @@ class CSVDataset(Dataset):
             return_tensors='pt'
         )
         
-        input_ids = encoding['input_ids'].squeeze()  # Remove the batch dimension
-        attention_mask = encoding['attention_mask'].squeeze()  # Remove the batch dimension
+        input_ids = encoding['input_ids'].squeeze()  
+        attention_mask = encoding['attention_mask'].squeeze()  
         
         return input_ids, attention_mask, torch.tensor(label, dtype=torch.long)
 
