@@ -33,7 +33,7 @@ Key Model Components:
     Classifier: Linear layer that maps the BERT output to POS labels.
 
 Setup Instructions
-1. Clone the Repository
+1. Clone the Repository <br/>
 git clone https://github.com/Shymaa2611/Finetuning_bert_POS.git <br/>
 cd Finetuning_bert_POS
 
@@ -41,7 +41,6 @@ cd Finetuning_bert_POS
 
 Ensure that you have Python 3.8 or higher. Install the required dependencies using:
 
-bash
 
 pip install -r requirements.txt
 
