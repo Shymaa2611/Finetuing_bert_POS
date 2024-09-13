@@ -1,5 +1,5 @@
 from training import train
-from validation import evaluate
+from evaluate import evaluate
 import torch
 import torch.nn as nn
 import torch.optim as optim
