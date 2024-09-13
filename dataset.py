@@ -24,36 +24,33 @@ def shuffle_and_split_data(df, test_size=0.30, random_state=42):
 
 
 class CSVDataset(Dataset):
-    def __init__(self, data, tokenizer, max_length=128):
-        self.words = data['word'].values
-        self.labels = data['label'].values
-        self.label_to_idx = {label: idx for idx, label in enumerate(set(self.labels))}
+    def __init__(self, dataframe, tokenizer, max_len):
+        self.dataframe = dataframe
         self.tokenizer = tokenizer
-        self.max_length = max_length
-        
+        self.max_len = max_len
+
     def __len__(self):
-        return len(self.words)
-    
+        return len(self.dataframe)
+
     def __getitem__(self, idx):
-        word = self.words[idx]
-        label = self.label_to_idx[self.labels[idx]]
+        # Ensure the 'word' column is a string
+        text = str(self.dataframe.iloc[idx]['word'])
+        label = self.dataframe.iloc[idx]['label']
         
-        # Tokenize the input word
+        # Tokenize the text
         encoding = self.tokenizer(
-            word, 
-            add_special_tokens=True, 
-            max_length=self.max_length, 
-            return_token_type_ids=False, 
-            padding='max_length', 
-            truncation=True, 
-            return_attention_mask=True,
+            text,
+            add_special_tokens=True,
+            max_length=self.max_len,
+            padding='max_length',
+            truncation=True,
             return_tensors='pt'
         )
         
-        input_ids = encoding['input_ids'].flatten()
-        attention_mask = encoding['attention_mask'].flatten()
-
-        return input_ids, attention_mask, label
+        input_ids = encoding['input_ids'].squeeze()  # Remove the batch dimension
+        attention_mask = encoding['attention_mask'].squeeze()  # Remove the batch dimension
+        
+        return input_ids, attention_mask, torch.tensor(label, dtype=torch.long)
 
 
 def create_data_loaders(train_data, test_data, tokenizer, batch_size):
