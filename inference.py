@@ -49,7 +49,7 @@ def infer(model, tokenizer, text, device):
     return predicted_class_name
 
 if __name__ == "__main__":
-    model_path = 'checkpoint.pt'
+    model_path = '/kaggle/working/test/Finetuning_bert_POS/checkpoint.pt'
     device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
     tokenizer = BertTokenizer.from_pretrained('bert-base-uncased')
     model = load_model(model_path, device)
