@@ -44,20 +44,20 @@ pip install -r requirements.txt
 ``` 
 ## Prepare the Dataset
 ``` bash
-   run dataset.py file
+run dataset.py file
 ``` 
 
 ## Training 
 ``` bash
-  run main.py file
+run main.py file
 ``` 
 
 ## Usage
 
 ```python 
-    from inference import get_result
-    word='good'
-    get_result(word)
+from inference import get_result
+word='good'
+get_result(word)
 
 ```
 ## Checkpoint 
