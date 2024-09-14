@@ -25,21 +25,18 @@ The dataset is stored in the data/ folder and consists of multiple CSV files. Ea
 
 We use the BERT model from the Hugging Face Transformers library. The model is fine-tuned to classify each word into one of the POS categories (e.g., noun, verb, adjective). The output layer is a linear classifier on top of BERT's pooled output.
 
-Key Model Components:
+### Key Model Components:
 
     BERT Pretrained Model: bert-base-uncased
     Classifier: Linear layer that maps the BERT output to POS labels.
 
-Setup Instructions
+## Setup Instructions
 1. Clone the Repository 
 ```bash 
 git clone https://github.com/Shymaa2611/Finetuning_bert_POS.git 
 cd Finetuning_bert_POS
 ```
-
-2. Install Dependencies
-
-3. Install the required dependencies
+2. Install the required dependencies
 
 ``` bash
 pip install -r requirements.txt
