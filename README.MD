@@ -1,6 +1,7 @@
 # BERT Fine-Tuning for Part-of-Speech Tagging
 - This project demonstrates how to fine-tune the BERT model for the task of Part-of-Speech (POS) 
   tagging. The dataset consists of multiple CSV files,containing words . We fine-tune the pre-trained BERT model and adapt it to handle this specific task.
+![model](media/model.jpg)
 ## Project Structure
 graphql
 
@@ -57,7 +58,15 @@ Requirements:
 4. Training 
   run main.py file
 
-## Acknowledgements
+## Usage
 
+```python 
+    from inference import get_result
+    word='good'
+    get_result(word)
+
+```
+
+## Acknowledgements
     The BERT model is from the Hugging Face Transformers library.
     Part-of-Speech tagging is a core NLP task with many applications, such as syntactic parsing and word sense disambiguation.

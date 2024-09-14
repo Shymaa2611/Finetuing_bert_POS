@@ -1,15 +1,13 @@
 import torch
-from transformers import BertTokenizer, BertModel
-import torch.nn as nn
+from transformers import BertTokenizer
 from main import get_model
-
 idx_to_class = {
-    0: "Noun",
-    1: "Verb",
-    2: "Adjective",
-    3: "Adverb",
-    4: "Pronoun",
-    5: "Conjunction"
+    0: 'adjectives',
+    1: 'adverbs',
+    2: 'nouns',
+    3: 'plural-nouns',
+    4: 'verbs',
+    5: 'words-multiple-present-participle'
 }
 
 def load_model(model_path, device):
@@ -49,11 +47,10 @@ def infer(model, tokenizer, text, device):
     return predicted_class_name
 
 if __name__ == "__main__":
-    model_path = '/kaggle/working/test/Finetuning_bert_POS/checkpoint.pt'
+    model_path = 'checkpoint.pt'
     device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
     tokenizer = BertTokenizer.from_pretrained('bert-base-uncased')
     model = load_model(model_path, device)
-    
     text = "Good"
     predicted_class = infer(model, tokenizer, text, device)
     print(f'Predicted class: {predicted_class}')
