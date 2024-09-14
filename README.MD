@@ -61,7 +61,7 @@ get_result(word)
 
 ```
 ## Checkpoint 
-- can download from : 
+- can download from : https://drive.google.com/file/d/1NQ5Y4gUV2dLnmVH4QznQy2LTrC8JNDvd/view?usp=drive_link
 
 ## Acknowledgements
     The BERT model is from the Hugging Face Transformers library.
